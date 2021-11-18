@@ -82,10 +82,12 @@ extension ViewController {
         for i in 0..<configuration.numberOfPhoto {
             let size = getSizeFor(ratio: configuration.ratio[i])
             let point = getPointFor(position: configuration.positions[i])
-            let view = UIView(frame: CGRect(origin: point, size: size))
-            view.layer.cornerRadius = 5
-            view.backgroundColor = .white
-            viewLayout.addSubview(view)
+            let button = UIButton(frame: CGRect(origin: point, size: size))
+            button.layer.cornerRadius = 5
+            button.backgroundColor = .white
+            button.setImage(UIImage(named: "Plus"), for: .normal)
+            button.adjustsImageWhenHighlighted = false
+            viewLayout.addSubview(button)
         }
     }
     
