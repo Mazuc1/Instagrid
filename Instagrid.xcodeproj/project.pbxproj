@@ -16,6 +16,10 @@
 		CF61C95D274241380085D596 /* InstagridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61C95C274241380085D596 /* InstagridTests.swift */; };
 		CF61C967274241380085D596 /* InstagridUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61C966274241380085D596 /* InstagridUITests.swift */; };
 		CF61C969274241380085D596 /* InstagridUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF61C968274241380085D596 /* InstagridUITestsLaunchTests.swift */; };
+		CF6EA5642746623F0045D04F /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA5632746623F0045D04F /* Configurable.swift */; };
+		CF6EA568274662510045D04F /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA565274662510045D04F /* UIColor+extension.swift */; };
+		CF6EA569274662510045D04F /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA566274662510045D04F /* UIView+extension.swift */; };
+		CF6EA56A274662510045D04F /* Collection+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA567274662510045D04F /* Collection+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		CF61C962274241380085D596 /* InstagridUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstagridUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF61C966274241380085D596 /* InstagridUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagridUITests.swift; sourceTree = "<group>"; };
 		CF61C968274241380085D596 /* InstagridUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagridUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CF6EA5632746623F0045D04F /* Configurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
+		CF6EA565274662510045D04F /* UIColor+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
+		CF6EA566274662510045D04F /* UIView+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
+		CF6EA567274662510045D04F /* Collection+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +109,12 @@
 			children = (
 				CF61C945274241370085D596 /* AppDelegate.swift */,
 				CF61C947274241370085D596 /* SceneDelegate.swift */,
+				CF6EA5622746623F0045D04F /* Helper */,
+				CF6EA561274661F20045D04F /* Extension */,
+				CF6EA560274661E70045D04F /* ViewModels */,
+				CF6EA55F274661D80045D04F /* Models */,
+				CF6EA55E274661CB0045D04F /* Views */,
+				CF6EA55D274661C20045D04F /* Font */,
 				CF61C949274241370085D596 /* ViewController.swift */,
 				CF61C94B274241370085D596 /* Main.storyboard */,
 				CF61C94E274241380085D596 /* Assets.xcassets */,
@@ -125,6 +139,52 @@
 				CF61C968274241380085D596 /* InstagridUITestsLaunchTests.swift */,
 			);
 			path = InstagridUITests;
+			sourceTree = "<group>";
+		};
+		CF6EA55D274661C20045D04F /* Font */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		CF6EA55E274661CB0045D04F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CF6EA55F274661D80045D04F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CF6EA560274661E70045D04F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CF6EA561274661F20045D04F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				CF6EA567274662510045D04F /* Collection+extension.swift */,
+				CF6EA565274662510045D04F /* UIColor+extension.swift */,
+				CF6EA566274662510045D04F /* UIView+extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		CF6EA5622746623F0045D04F /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				CF6EA5632746623F0045D04F /* Configurable.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,8 +318,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF6EA569274662510045D04F /* UIView+extension.swift in Sources */,
+				CF6EA56A274662510045D04F /* Collection+extension.swift in Sources */,
 				CF61C94A274241370085D596 /* ViewController.swift in Sources */,
 				CF61C946274241370085D596 /* AppDelegate.swift in Sources */,
+				CF6EA568274662510045D04F /* UIColor+extension.swift in Sources */,
+				CF6EA5642746623F0045D04F /* Configurable.swift in Sources */,
 				CF61C948274241370085D596 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
