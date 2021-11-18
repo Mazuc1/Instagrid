@@ -10,11 +10,11 @@ import UIKit
 extension UIColor {
     
     static var background: UIColor {
-        return UIColor(red: 171/255, green: 184/255, blue: 204/255, alpha: 1)
+        return UIColor(red: 183/255, green: 215/255, blue: 229/255, alpha: 1)
     }
     
     static var darkBlue: UIColor {
-        return UIColor(red: 10/255, green: 69/255, blue: 163/255, alpha: 1)
+        return UIColor(red: 16/255, green: 102/255, blue: 152/255, alpha: 1)
     }
     
 }
