@@ -20,6 +20,8 @@
 		CF6EA568274662510045D04F /* UIColor+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA565274662510045D04F /* UIColor+extension.swift */; };
 		CF6EA569274662510045D04F /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA566274662510045D04F /* UIView+extension.swift */; };
 		CF6EA56A274662510045D04F /* Collection+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA567274662510045D04F /* Collection+extension.swift */; };
+		CF6EA56D274662FF0045D04F /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF6EA56B274662FF0045D04F /* Delm-Medium.otf */; };
+		CF6EA56E274662FF0045D04F /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF6EA56C274662FF0045D04F /* ThirstySoftRegular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		CF6EA565274662510045D04F /* UIColor+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+extension.swift"; sourceTree = "<group>"; };
 		CF6EA566274662510045D04F /* UIView+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 		CF6EA567274662510045D04F /* Collection+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+extension.swift"; sourceTree = "<group>"; };
+		CF6EA56B274662FF0045D04F /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
+		CF6EA56C274662FF0045D04F /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThirstySoftRegular.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,12 +113,12 @@
 			children = (
 				CF61C945274241370085D596 /* AppDelegate.swift */,
 				CF61C947274241370085D596 /* SceneDelegate.swift */,
+				CF6EA55D274661C20045D04F /* Font */,
 				CF6EA5622746623F0045D04F /* Helper */,
 				CF6EA561274661F20045D04F /* Extension */,
 				CF6EA560274661E70045D04F /* ViewModels */,
 				CF6EA55F274661D80045D04F /* Models */,
 				CF6EA55E274661CB0045D04F /* Views */,
-				CF6EA55D274661C20045D04F /* Font */,
 				CF61C949274241370085D596 /* ViewController.swift */,
 				CF61C94B274241370085D596 /* Main.storyboard */,
 				CF61C94E274241380085D596 /* Assets.xcassets */,
@@ -144,6 +148,8 @@
 		CF6EA55D274661C20045D04F /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				CF6EA56B274662FF0045D04F /* Delm-Medium.otf */,
+				CF6EA56C274662FF0045D04F /* ThirstySoftRegular.otf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -293,6 +299,8 @@
 			files = (
 				CF61C952274241380085D596 /* LaunchScreen.storyboard in Resources */,
 				CF61C94F274241380085D596 /* Assets.xcassets in Resources */,
+				CF6EA56E274662FF0045D04F /* ThirstySoftRegular.otf in Resources */,
+				CF6EA56D274662FF0045D04F /* Delm-Medium.otf in Resources */,
 				CF61C94D274241370085D596 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
