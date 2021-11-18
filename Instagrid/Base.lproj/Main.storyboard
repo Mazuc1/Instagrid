@@ -76,13 +76,23 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d5E-38-u8v">
+                                <rect key="frame" x="57" y="303" width="300" height="300"/>
+                                <color key="backgroundColor" red="0.062745098040000002" green="0.2156862745" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="Nut-HQ-jse"/>
+                                    <constraint firstAttribute="width" constant="300" id="wBN-th-6nA"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="d5E-38-u8v" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="2sw-wF-rRc"/>
                             <constraint firstItem="uny-MB-sYF" firstAttribute="top" secondItem="IEs-wK-L2l" secondAttribute="bottom" constant="40" id="90r-3X-JL2"/>
                             <constraint firstItem="IEs-wK-L2l" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="AJ5-hn-U3t"/>
                             <constraint firstItem="uny-MB-sYF" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Lrl-wi-KsC"/>
+                            <constraint firstItem="d5E-38-u8v" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="i6W-A5-721"/>
                             <constraint firstItem="IEs-wK-L2l" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="iAI-bz-j6T"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="k25-pr-aXV" secondAttribute="bottom" constant="20" id="sY0-ph-VlG"/>
                             <constraint firstItem="k25-pr-aXV" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="uuk-JW-FZ9"/>
@@ -92,6 +102,7 @@
                         <outlet property="labelInstagrid" destination="IEs-wK-L2l" id="pJM-xi-EwV"/>
                         <outlet property="labelSwipeToShare" destination="uny-MB-sYF" id="oYp-Jt-lOs"/>
                         <outlet property="stackViewLayout" destination="k25-pr-aXV" id="hZM-dZ-hSY"/>
+                        <outlet property="viewLayout" destination="d5E-38-u8v" id="PAf-XI-Tkv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

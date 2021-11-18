@@ -22,6 +22,8 @@
 		CF6EA56D274662FF0045D04F /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF6EA56B274662FF0045D04F /* Delm-Medium.otf */; };
 		CF6EA56E274662FF0045D04F /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF6EA56C274662FF0045D04F /* ThirstySoftRegular.otf */; };
 		CF6EA5702746645E0045D04F /* UIFont+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA56F2746645E0045D04F /* UIFont+extension.swift */; };
+		CF6EA576274695EC0045D04F /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA575274695EC0045D04F /* Layout.swift */; };
+		CF6EA57A274699EC0045D04F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA579274699EC0045D04F /* Configuration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		CF6EA56B274662FF0045D04F /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
 		CF6EA56C274662FF0045D04F /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThirstySoftRegular.otf; sourceTree = "<group>"; };
 		CF6EA56F2746645E0045D04F /* UIFont+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extension.swift"; sourceTree = "<group>"; };
+		CF6EA575274695EC0045D04F /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		CF6EA579274699EC0045D04F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +119,8 @@
 				CF6EA55D274661C20045D04F /* Font */,
 				CF6EA5622746623F0045D04F /* Helper */,
 				CF6EA561274661F20045D04F /* Extension */,
-				CF6EA560274661E70045D04F /* ViewModels */,
 				CF6EA55F274661D80045D04F /* Models */,
+				CF6EA560274661E70045D04F /* ViewModels */,
 				CF6EA55E274661CB0045D04F /* Views */,
 				CF61C94B274241370085D596 /* Main.storyboard */,
 				CF61C94E274241380085D596 /* Assets.xcassets */,
@@ -163,6 +167,8 @@
 		CF6EA55F274661D80045D04F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CF6EA575274695EC0045D04F /* Layout.swift */,
+				CF6EA579274699EC0045D04F /* Configuration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -330,6 +336,8 @@
 				CF6EA56A274662510045D04F /* Collection+extension.swift in Sources */,
 				CF61C94A274241370085D596 /* ViewController.swift in Sources */,
 				CF61C946274241370085D596 /* AppDelegate.swift in Sources */,
+				CF6EA576274695EC0045D04F /* Layout.swift in Sources */,
+				CF6EA57A274699EC0045D04F /* Configuration.swift in Sources */,
 				CF6EA568274662510045D04F /* UIColor+extension.swift in Sources */,
 				CF6EA5642746623F0045D04F /* Configurable.swift in Sources */,
 				CF6EA5702746645E0045D04F /* UIFont+extension.swift in Sources */,
