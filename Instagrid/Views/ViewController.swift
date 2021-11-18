@@ -11,7 +11,13 @@ class ViewController: UIViewController {
     
     //  MARK: - Properties
     
+    var imagePicker = UIImagePickerController()
+    
     let marginsViewLayout: CGFloat = 15
+    var buttonsPhoto: [UIButton] = []
+    var photo: [UIImage] = []
+    
+    var selectedIndexButton: Int = 0
     
     //  MARK: - Outlets
     
@@ -25,6 +31,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,6 +80,17 @@ class ViewController: UIViewController {
         default: return Layout.one
         }
     }
+    
+    @objc private func openGallery(_ button: UIButton) {
+        selectedIndexButton = button.tag
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    private func applyImage(_ image: UIImage) {
+        let button = buttonsPhoto[selectedIndexButton]
+        button.setBackgroundImage(image, for: .normal)
+        button.setImage(nil, for: .normal)
+    }
 
 }
 
@@ -79,14 +100,21 @@ extension ViewController {
     
     private func createLayout(configuration: Configuration) {
         viewLayout.removeSubviews()
+        buttonsPhoto.removeAll()
+        
         for i in 0..<configuration.numberOfPhoto {
             let size = getSizeFor(ratio: configuration.ratio[i])
             let point = getPointFor(position: configuration.positions[i])
+            
             let button = UIButton(frame: CGRect(origin: point, size: size))
             button.layer.cornerRadius = 5
             button.backgroundColor = .white
             button.setImage(UIImage(named: "Plus"), for: .normal)
             button.adjustsImageWhenHighlighted = false
+            button.addTarget(self, action: #selector(openGallery(_:)), for: .touchUpInside)
+            button.tag = i
+            
+            buttonsPhoto.append(button)
             viewLayout.addSubview(button)
         }
     }
@@ -115,5 +143,15 @@ extension ViewController {
         }
     }
     
+}
+
+//  MARK: - UIImagePickerDelegate
+
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        guard let image = info[.originalImage] as? UIImage else { return }
+        applyImage(image)
+    }
 }
 
