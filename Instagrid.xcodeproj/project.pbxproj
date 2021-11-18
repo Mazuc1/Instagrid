@@ -22,6 +22,7 @@
 		CF6EA56A274662510045D04F /* Collection+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA567274662510045D04F /* Collection+extension.swift */; };
 		CF6EA56D274662FF0045D04F /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF6EA56B274662FF0045D04F /* Delm-Medium.otf */; };
 		CF6EA56E274662FF0045D04F /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF6EA56C274662FF0045D04F /* ThirstySoftRegular.otf */; };
+		CF6EA5702746645E0045D04F /* UIFont+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA56F2746645E0045D04F /* UIFont+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		CF6EA567274662510045D04F /* Collection+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+extension.swift"; sourceTree = "<group>"; };
 		CF6EA56B274662FF0045D04F /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
 		CF6EA56C274662FF0045D04F /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThirstySoftRegular.otf; sourceTree = "<group>"; };
+		CF6EA56F2746645E0045D04F /* UIFont+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 				CF6EA567274662510045D04F /* Collection+extension.swift */,
 				CF6EA565274662510045D04F /* UIColor+extension.swift */,
 				CF6EA566274662510045D04F /* UIView+extension.swift */,
+				CF6EA56F2746645E0045D04F /* UIFont+extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				CF61C946274241370085D596 /* AppDelegate.swift in Sources */,
 				CF6EA568274662510045D04F /* UIColor+extension.swift in Sources */,
 				CF6EA5642746623F0045D04F /* Configurable.swift in Sources */,
+				CF6EA5702746645E0045D04F /* UIFont+extension.swift in Sources */,
 				CF61C948274241370085D596 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
