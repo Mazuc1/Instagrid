@@ -118,7 +118,6 @@
 				CF6EA560274661E70045D04F /* ViewModels */,
 				CF6EA55F274661D80045D04F /* Models */,
 				CF6EA55E274661CB0045D04F /* Views */,
-				CF61C949274241370085D596 /* ViewController.swift */,
 				CF61C94B274241370085D596 /* Main.storyboard */,
 				CF61C94E274241380085D596 /* Assets.xcassets */,
 				CF61C950274241380085D596 /* LaunchScreen.storyboard */,
@@ -156,6 +155,7 @@
 		CF6EA55E274661CB0045D04F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CF61C949274241370085D596 /* ViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
