@@ -24,6 +24,7 @@
 		CF6EA5702746645E0045D04F /* UIFont+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA56F2746645E0045D04F /* UIFont+extension.swift */; };
 		CF6EA576274695EC0045D04F /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA575274695EC0045D04F /* Layout.swift */; };
 		CF6EA57A274699EC0045D04F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA579274699EC0045D04F /* Configuration.swift */; };
+		CF9322F22747A72800AE49FC /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9322F12747A72800AE49FC /* PhotoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		CF6EA56F2746645E0045D04F /* UIFont+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extension.swift"; sourceTree = "<group>"; };
 		CF6EA575274695EC0045D04F /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		CF6EA579274699EC0045D04F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		CF9322F12747A72800AE49FC /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				CF61C949274241370085D596 /* ViewController.swift */,
+				CF9322F12747A72800AE49FC /* PhotoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				CF6EA569274662510045D04F /* UIView+extension.swift in Sources */,
 				CF6EA56A274662510045D04F /* Collection+extension.swift in Sources */,
 				CF61C94A274241370085D596 /* ViewController.swift in Sources */,
+				CF9322F22747A72800AE49FC /* PhotoView.swift in Sources */,
 				CF61C946274241370085D596 /* AppDelegate.swift in Sources */,
 				CF6EA576274695EC0045D04F /* Layout.swift in Sources */,
 				CF6EA57A274699EC0045D04F /* Configuration.swift in Sources */,

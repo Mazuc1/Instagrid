@@ -14,10 +14,9 @@ class ViewController: UIViewController {
     var imagePicker = UIImagePickerController()
     
     let marginsViewLayout: CGFloat = 15
-    var buttonsPhoto: [UIButton] = []
-    var photo: [UIImage] = []
+    var photoViews: [PhotoView] = []
     
-    var selectedIndexButton: Int = 0
+    var selectedIndex: Int = 0
     
     //  MARK: - Outlets
     
@@ -80,17 +79,6 @@ class ViewController: UIViewController {
         default: return Layout.one
         }
     }
-    
-    @objc private func openGallery(_ button: UIButton) {
-        selectedIndexButton = button.tag
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    private func applyImage(_ image: UIImage) {
-        let button = buttonsPhoto[selectedIndexButton]
-        button.setBackgroundImage(image, for: .normal)
-        button.setImage(nil, for: .normal)
-    }
 
 }
 
@@ -100,22 +88,16 @@ extension ViewController {
     
     private func createLayout(configuration: Configuration) {
         viewLayout.removeSubviews()
-        buttonsPhoto.removeAll()
+        photoViews.removeAll()
         
         for i in 0..<configuration.numberOfPhoto {
             let size = getSizeFor(ratio: configuration.ratio[i])
             let point = getPointFor(position: configuration.positions[i])
             
-            let button = UIButton(frame: CGRect(origin: point, size: size))
-            button.layer.cornerRadius = 5
-            button.backgroundColor = .white
-            button.setImage(UIImage(named: "Plus"), for: .normal)
-            button.adjustsImageWhenHighlighted = false
-            button.addTarget(self, action: #selector(openGallery(_:)), for: .touchUpInside)
-            button.tag = i
+            let photoView = PhotoView(tag: i, frame: CGRect(origin: point, size: size), delegate: self)
             
-            buttonsPhoto.append(button)
-            viewLayout.addSubview(button)
+            photoViews.append(photoView)
+            viewLayout.addSubview(photoView)
         }
     }
     
@@ -151,7 +133,16 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         guard let image = info[.originalImage] as? UIImage else { return }
-        applyImage(image)
+        photoViews[selectedIndex].photoIsSelected(image: image)
+    }
+}
+
+//  MARK: - Photo View Delegate
+
+extension ViewController: PhotoViewDelegate {
+    func openGallery(for index: Int) {
+        selectedIndex = index
+        present(imagePicker, animated: true, completion: nil)
     }
 }
 
