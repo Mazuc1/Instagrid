@@ -15,8 +15,10 @@ class ViewController: UIViewController {
     
     let marginsViewLayout: CGFloat = 15
     var photoViews: [PhotoView] = []
-    
     var selectedIndex: Int = 0
+    
+    var swipeGesture: UISwipeGestureRecognizer!
+    var defaultPosition: CGFloat = 0
     
     //  MARK: - Outlets
     
@@ -34,6 +36,10 @@ class ViewController: UIViewController {
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
+        
+        swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToShare(_:)))
+        swipeGesture.direction = .up
+        view.addGestureRecognizer(swipeGesture)
     }
     
     override func viewDidAppear(_ animated: Bool) {
