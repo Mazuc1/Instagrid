@@ -96,6 +96,14 @@ class ViewController: UIViewController {
         default: return Layout.one
         }
     }
+    private func presentActivityController() {
+        let photo = viewLayout.asImage()
+        let activityController = UIActivityViewController(activityItems: [photo], applicationActivities: nil)
+        activityController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            self.animateSwipe(direction: .up, backToPosition: true)
+        }
+        present(activityController, animated: true)
+    }
 
 }
 
