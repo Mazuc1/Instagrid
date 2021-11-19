@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     //  MARK: - Properties
     
     var imagePicker = UIImagePickerController()
+    var currentConfiguration: Int = 2
     
     let marginsViewLayout: CGFloat = 15
     var photoViews: [PhotoView] = []
@@ -20,7 +21,12 @@ class ViewController: UIViewController {
     var swipeGesture: UISwipeGestureRecognizer!
     var defaultPosition: CGFloat = 0
     
+    var orientation: UIDeviceOrientation = .faceUp
+    
     //  MARK: - Outlets
+    
+    var portraitConstraints: [NSLayoutConstraint]!
+    var landscapeConstraints: [NSLayoutConstraint]!
     
     @IBOutlet weak var viewLayout: UIView!
     @IBOutlet weak var labelInstagrid: UILabel!
@@ -31,6 +37,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureLayout()
+        
         configureUI()
         
         imagePicker.delegate = self
@@ -42,21 +51,24 @@ class ViewController: UIViewController {
         view.addGestureRecognizer(swipeGesture)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        createLayout(configuration: Layout.two)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        createLayout(configuration: getConfiguration(for: currentConfiguration))
     }
     
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         if UIApplication.shared.statusBarOrientation.isLandscape {
             labelSwipeToShare.text = "^\nSwipe up to share"
             swipeGesture.direction = .up
+            orientation = .faceUp
         } else {
-            labelSwipeToShare.text = "^\nSwipe left to share"
+            labelSwipeToShare.text = "< Swipe left to share"
             swipeGesture.direction = .left
+            orientation = .landscapeLeft
         }
+        
+        updateConstraints()
     }
-    
     
     //  MARK: - Actions
     
@@ -89,6 +101,7 @@ class ViewController: UIViewController {
     }
     
     private func getConfiguration(for index: Int) -> Configuration {
+        currentConfiguration = index
         switch index {
         case 1: return Layout.one
         case 2: return Layout.two
@@ -96,6 +109,8 @@ class ViewController: UIViewController {
         default: return Layout.one
         }
     }
+    
+    //  MARK: - Swipe
     
     @objc private func swipeToShare(_ swipe: UISwipeGestureRecognizer) {
         if swipe.direction == .up {
@@ -125,16 +140,20 @@ class ViewController: UIViewController {
                 default: print("wrong swipe direction")
                 }
             } completion: {
-                if $0 { self.presentActivityController() }
+                if $0 { self.presentActivityController(direction: direction) }
             }
         }
     }
     
-    private func presentActivityController() {
+    private func presentActivityController(direction: UISwipeGestureRecognizer.Direction) {
         let photo = viewLayout.asImage()
         let activityController = UIActivityViewController(activityItems: [photo], applicationActivities: nil)
         activityController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
-            self.animateSwipe(direction: .up, backToPosition: true)
+            switch direction {
+            case .up: self.animateSwipe(direction: .up, backToPosition: true)
+            case .left: self.animateSwipe(direction: .left, backToPosition: true)
+            default: print("error: presentActivityController")
+            }
         }
         present(activityController, animated: true)
     }
@@ -203,5 +222,79 @@ extension ViewController: PhotoViewDelegate {
         selectedIndex = index
         present(imagePicker, animated: true, completion: nil)
     }
+}
+
+//  MARK: - Constraints
+
+extension ViewController {
+    
+    fileprivate func updateConstraints() {
+        if orientation == .faceUp {
+            stackViewLayout.axis = .horizontal
+            _ = landscapeConstraints.map { $0.isActive = false }
+            _ = portraitConstraints.map { $0.isActive = true }
+        } else if orientation == .landscapeLeft {
+            stackViewLayout.axis = .vertical
+            _ = portraitConstraints.map { $0.isActive = false }
+            _ = landscapeConstraints.map { $0.isActive = true }
+        }
+        
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        
+        createLayout(configuration: getConfiguration(for: currentConfiguration))
+    }
+    
+    fileprivate func configureLayout() {
+        viewLayout.translatesAutoresizingMaskIntoConstraints = false
+        labelInstagrid.translatesAutoresizingMaskIntoConstraints = false
+        labelSwipeToShare.translatesAutoresizingMaskIntoConstraints = false
+        stackViewLayout.translatesAutoresizingMaskIntoConstraints = false
+        
+        portraitConstraints = createPortraitConstraints()
+        landscapeConstraints = createLandscapeConstraints()
+        updateConstraints()
+    }
+    
+    fileprivate func createPortraitConstraints() -> [NSLayoutConstraint] {
+        var constraints = [NSLayoutConstraint]()
+        
+        constraints.append(labelInstagrid.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 10))
+        constraints.append(labelInstagrid.centerXAnchor.constraint(equalTo: view.centerXAnchor))
+        
+        constraints.append(labelSwipeToShare.topAnchor.constraint(equalTo: labelInstagrid.bottomAnchor, constant: 40))
+        constraints.append(labelSwipeToShare.centerXAnchor.constraint(equalTo: view.centerXAnchor))
+        
+        constraints.append(viewLayout.centerXAnchor.constraint(equalTo: view.centerXAnchor))
+        constraints.append(viewLayout.centerYAnchor.constraint(equalTo: view.centerYAnchor))
+        constraints.append(viewLayout.widthAnchor.constraint(equalToConstant: 300))
+        constraints.append(viewLayout.heightAnchor.constraint(equalToConstant: 300))
+        
+        constraints.append(stackViewLayout.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -20))
+        constraints.append(stackViewLayout.centerXAnchor.constraint(equalTo: view.centerXAnchor))
+
+        return constraints
+    }
+    
+    fileprivate func createLandscapeConstraints() -> [NSLayoutConstraint] {
+        var constraints = [NSLayoutConstraint]()
+        
+        constraints.append(labelInstagrid.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 10))
+        constraints.append(labelInstagrid.centerXAnchor.constraint(equalTo: view.centerXAnchor))
+        
+        constraints.append(labelSwipeToShare.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor))
+        constraints.append(labelSwipeToShare.centerYAnchor.constraint(equalTo: view.centerYAnchor))
+        
+        constraints.append(viewLayout.centerXAnchor.constraint(equalTo: view.centerXAnchor))
+        constraints.append(viewLayout.centerYAnchor.constraint(equalTo: view.centerYAnchor))
+        constraints.append(viewLayout.widthAnchor.constraint(equalToConstant: 275))
+        constraints.append(viewLayout.heightAnchor.constraint(equalToConstant: 275))
+        
+        constraints.append(stackViewLayout.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor, constant: 20))
+        constraints.append(stackViewLayout.centerYAnchor.constraint(equalTo: view.centerYAnchor))
+        
+        return constraints
+    }
+    
 }
 
