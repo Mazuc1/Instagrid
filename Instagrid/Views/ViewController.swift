@@ -41,6 +41,17 @@ class ViewController: UIViewController {
         createLayout(configuration: Layout.two)
     }
     
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIApplication.shared.statusBarOrientation.isLandscape {
+            labelSwipeToShare.text = "^\nSwipe up to share"
+            swipeGesture.direction = .up
+        } else {
+            labelSwipeToShare.text = "^\nSwipe left to share"
+            swipeGesture.direction = .left
+        }
+    }
+    
+    
     //  MARK: - Actions
     
     @IBAction func didSelectLayout(_ sender: UIButton) {
