@@ -17,20 +17,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagrid" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEs-wK-L2l">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Instagrid" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEs-wK-L2l">
                                 <rect key="frame" x="169" y="54" width="76.5" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uny-MB-sYF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uny-MB-sYF">
                                 <rect key="frame" x="183" y="118" width="48" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="k25-pr-aXV">
-                                <rect key="frame" x="52" y="762" width="310" height="80"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d5E-38-u8v">
+                                <rect key="frame" x="57" y="303" width="300" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.062745098040000002" green="0.2156862745" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="k25-pr-aXV">
+                                <rect key="frame" x="52" y="746" width="310" height="80"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iyB-em-2Lm">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -76,27 +83,9 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d5E-38-u8v">
-                                <rect key="frame" x="57" y="303" width="300" height="300"/>
-                                <color key="backgroundColor" red="0.062745098040000002" green="0.2156862745" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="Nut-HQ-jse"/>
-                                    <constraint firstAttribute="width" constant="300" id="wBN-th-6nA"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="d5E-38-u8v" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="2sw-wF-rRc"/>
-                            <constraint firstItem="uny-MB-sYF" firstAttribute="top" secondItem="IEs-wK-L2l" secondAttribute="bottom" constant="40" id="90r-3X-JL2"/>
-                            <constraint firstItem="IEs-wK-L2l" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="AJ5-hn-U3t"/>
-                            <constraint firstItem="uny-MB-sYF" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Lrl-wi-KsC"/>
-                            <constraint firstItem="d5E-38-u8v" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="i6W-A5-721"/>
-                            <constraint firstItem="IEs-wK-L2l" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="iAI-bz-j6T"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="k25-pr-aXV" secondAttribute="bottom" constant="20" id="sY0-ph-VlG"/>
-                            <constraint firstItem="k25-pr-aXV" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="uuk-JW-FZ9"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="labelInstagrid" destination="IEs-wK-L2l" id="pJM-xi-EwV"/>
