@@ -11,7 +11,12 @@ class ViewController: UIViewController {
     
     //  MARK: - Properties
     
+    var imagePicker = UIImagePickerController()
+    
     let marginsViewLayout: CGFloat = 15
+    var photoViews: [PhotoView] = []
+    
+    var selectedIndex: Int = 0
     
     //  MARK: - Outlets
     
@@ -25,6 +30,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -79,15 +88,16 @@ extension ViewController {
     
     private func createLayout(configuration: Configuration) {
         viewLayout.removeSubviews()
+        photoViews.removeAll()
+        
         for i in 0..<configuration.numberOfPhoto {
             let size = getSizeFor(ratio: configuration.ratio[i])
             let point = getPointFor(position: configuration.positions[i])
-            let button = UIButton(frame: CGRect(origin: point, size: size))
-            button.layer.cornerRadius = 5
-            button.backgroundColor = .white
-            button.setImage(UIImage(named: "Plus"), for: .normal)
-            button.adjustsImageWhenHighlighted = false
-            viewLayout.addSubview(button)
+            
+            let photoView = PhotoView(tag: i, frame: CGRect(origin: point, size: size), delegate: self)
+            
+            photoViews.append(photoView)
+            viewLayout.addSubview(photoView)
         }
     }
     
@@ -115,5 +125,24 @@ extension ViewController {
         }
     }
     
+}
+
+//  MARK: - UIImagePickerDelegate
+
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        guard let image = info[.originalImage] as? UIImage else { return }
+        photoViews[selectedIndex].photoIsSelected(image: image)
+    }
+}
+
+//  MARK: - Photo View Delegate
+
+extension ViewController: PhotoViewDelegate {
+    func openGallery(for index: Int) {
+        selectedIndex = index
+        present(imagePicker, animated: true, completion: nil)
+    }
 }
 
