@@ -96,6 +96,40 @@ class ViewController: UIViewController {
         default: return Layout.one
         }
     }
+    
+    @objc private func swipeToShare(_ swipe: UISwipeGestureRecognizer) {
+        if swipe.direction == .up {
+            defaultPosition = viewLayout.frame.origin.y
+            animateSwipe(direction: .up, backToPosition: false)
+        } else if swipe.direction == .left {
+            defaultPosition = viewLayout.frame.origin.x
+            animateSwipe(direction: .left, backToPosition: false)
+            
+        }
+    }
+    
+    private func animateSwipe(direction: UISwipeGestureRecognizer.Direction, backToPosition: Bool) {
+        if backToPosition {
+            UIView.animate(withDuration: 1) {
+                switch direction {
+                case .up: self.viewLayout.frame.origin.y = self.defaultPosition
+                case .left: self.viewLayout.frame.origin.x = self.defaultPosition
+                default: print("wrong swipe direction")
+                }
+            }
+        } else {
+            UIView.animate(withDuration: 1) {
+                switch direction {
+                case .up: self.viewLayout.frame.origin.y = -self.viewLayout.frame.height
+                case .left: self.viewLayout.frame.origin.x = -self.viewLayout.frame.width
+                default: print("wrong swipe direction")
+                }
+            } completion: {
+                if $0 { self.presentActivityController() }
+            }
+        }
+    }
+    
     private func presentActivityController() {
         let photo = viewLayout.asImage()
         let activityController = UIActivityViewController(activityItems: [photo], applicationActivities: nil)
