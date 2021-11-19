@@ -15,8 +15,10 @@ class ViewController: UIViewController {
     
     let marginsViewLayout: CGFloat = 15
     var photoViews: [PhotoView] = []
-    
     var selectedIndex: Int = 0
+    
+    var swipeGesture: UISwipeGestureRecognizer!
+    var defaultPosition: CGFloat = 0
     
     //  MARK: - Outlets
     
@@ -34,12 +36,27 @@ class ViewController: UIViewController {
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
+        
+        swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToShare(_:)))
+        swipeGesture.direction = .up
+        view.addGestureRecognizer(swipeGesture)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         createLayout(configuration: Layout.two)
     }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIApplication.shared.statusBarOrientation.isLandscape {
+            labelSwipeToShare.text = "^\nSwipe up to share"
+            swipeGesture.direction = .up
+        } else {
+            labelSwipeToShare.text = "^\nSwipe left to share"
+            swipeGesture.direction = .left
+        }
+    }
+    
     
     //  MARK: - Actions
     
@@ -78,6 +95,48 @@ class ViewController: UIViewController {
         case 3: return Layout.three
         default: return Layout.one
         }
+    }
+    
+    @objc private func swipeToShare(_ swipe: UISwipeGestureRecognizer) {
+        if swipe.direction == .up {
+            defaultPosition = viewLayout.frame.origin.y
+            animateSwipe(direction: .up, backToPosition: false)
+        } else if swipe.direction == .left {
+            defaultPosition = viewLayout.frame.origin.x
+            animateSwipe(direction: .left, backToPosition: false)
+            
+        }
+    }
+    
+    private func animateSwipe(direction: UISwipeGestureRecognizer.Direction, backToPosition: Bool) {
+        if backToPosition {
+            UIView.animate(withDuration: 1) {
+                switch direction {
+                case .up: self.viewLayout.frame.origin.y = self.defaultPosition
+                case .left: self.viewLayout.frame.origin.x = self.defaultPosition
+                default: print("wrong swipe direction")
+                }
+            }
+        } else {
+            UIView.animate(withDuration: 1) {
+                switch direction {
+                case .up: self.viewLayout.frame.origin.y = -self.viewLayout.frame.height
+                case .left: self.viewLayout.frame.origin.x = -self.viewLayout.frame.width
+                default: print("wrong swipe direction")
+                }
+            } completion: {
+                if $0 { self.presentActivityController() }
+            }
+        }
+    }
+    
+    private func presentActivityController() {
+        let photo = viewLayout.asImage()
+        let activityController = UIActivityViewController(activityItems: [photo], applicationActivities: nil)
+        activityController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            self.animateSwipe(direction: .up, backToPosition: true)
+        }
+        present(activityController, animated: true)
     }
 
 }
