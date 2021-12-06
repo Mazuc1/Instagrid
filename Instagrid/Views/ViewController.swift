@@ -12,16 +12,18 @@ class ViewController: UIViewController {
     //  MARK: - Properties
     
     var imagePicker = UIImagePickerController()
-    var currentConfiguration: Int = 2
     
-    let marginsViewLayout: CGFloat = 15
     var photoViews: [PhotoView] = []
-    var selectedIndex: Int = 0
+    var selectedLayoutIndex: Int = 0
     
     var swipeGesture: UISwipeGestureRecognizer!
-    var defaultPosition: CGFloat = 0
+    var defaultViewLayoutPosition: CGFloat = 0
     
     var orientation: UIDeviceOrientation = .faceUp
+    
+    var layoutViewModel: LayoutViewModel!
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { [.landscapeLeft, .portrait] }
     
     //  MARK: - Outlets
     
@@ -38,8 +40,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureLayout()
+        layoutViewModel = LayoutViewModel()
         
+        configureLayout()
         configureUI()
         
         imagePicker.delegate = self
@@ -53,7 +56,7 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        createLayout(configuration: getConfiguration(for: currentConfiguration))
+        createLayout(configuration: layoutViewModel.currentConfiguration)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -75,7 +78,8 @@ class ViewController: UIViewController {
     @IBAction func didSelectLayout(_ sender: UIButton) {
         clearStackView()
         sender.setBackgroundImage(UIImage(named: "Selected_\(sender.tag)"), for: .normal)
-        createLayout(configuration: getConfiguration(for: sender.tag))
+        layoutViewModel.updateConfiguration(at: sender.tag)
+        createLayout(configuration: layoutViewModel.currentConfiguration)
     }
     
     //  MARK: - Methods
@@ -100,24 +104,14 @@ class ViewController: UIViewController {
         }
     }
     
-    private func getConfiguration(for index: Int) -> Configuration {
-        currentConfiguration = index
-        switch index {
-        case 1: return Layout.one
-        case 2: return Layout.two
-        case 3: return Layout.three
-        default: return Layout.one
-        }
-    }
-    
     //  MARK: - Swipe
     
     @objc private func swipeToShare(_ swipe: UISwipeGestureRecognizer) {
         if swipe.direction == .up {
-            defaultPosition = viewLayout.frame.origin.y
+            defaultViewLayoutPosition = viewLayout.frame.origin.y
             animateSwipe(direction: .up, backToPosition: false)
         } else if swipe.direction == .left {
-            defaultPosition = viewLayout.frame.origin.x
+            defaultViewLayoutPosition = viewLayout.frame.origin.x
             animateSwipe(direction: .left, backToPosition: false)
             
         }
@@ -127,8 +121,8 @@ class ViewController: UIViewController {
         if backToPosition {
             UIView.animate(withDuration: 1) {
                 switch direction {
-                case .up: self.viewLayout.frame.origin.y = self.defaultPosition
-                case .left: self.viewLayout.frame.origin.x = self.defaultPosition
+                case .up: self.viewLayout.frame.origin.y = self.defaultViewLayoutPosition
+                case .left: self.viewLayout.frame.origin.x = self.defaultViewLayoutPosition
                 default: print("wrong swipe direction")
                 }
             }
@@ -169,40 +163,20 @@ extension ViewController {
         photoViews.removeAll()
         
         for i in 0..<configuration.numberOfPhoto {
-            let size = getSizeFor(ratio: configuration.ratio[i])
-            let point = getPointFor(position: configuration.positions[i])
-            
-            let photoView = PhotoView(tag: i, frame: CGRect(origin: point, size: size), delegate: self)
+            let photoFrame = layoutViewModel.createFrame(at: i, for: viewLayout.frame)
+            let photoView = PhotoView(tag: i, frame: CGRect(origin: photoFrame.origin, size: photoFrame.size), delegate: self)
             
             photoViews.append(photoView)
             viewLayout.addSubview(photoView)
         }
     }
     
-    private func getSizeFor(ratio: Ratio) -> CGSize {
-        switch ratio {
-        case .quarter:
-            let calcul = (viewLayout.frame.width / 2) - 15 - marginsViewLayout / 2
-            return CGSize(width: calcul, height: calcul)
-        case .half:
-            let height = (viewLayout.frame.height / 2) - 15 - marginsViewLayout / 2
-            let width = viewLayout.frame.width - 30
-            return CGSize(width: width, height: height)
+    private func updateLayout(configuration: Configuration) {
+        for (index, photoView) in photoViews.enumerated() {
+            let photoFrame = layoutViewModel.createFrame(at: index, for: viewLayout.frame)
+            photoView.frame = CGRect(origin: photoFrame.origin, size: photoFrame.size)
         }
     }
-    
-    private func getPointFor(position: Positions) -> CGPoint {
-        let centerXPoint = (viewLayout.frame.width / 2) + (marginsViewLayout / 2)
-        let centerYPoint = (viewLayout.frame.height / 2) + (marginsViewLayout / 2)
-        
-        switch position {
-        case .top, .left, .topLeft: return CGPoint(x: 15, y: 15)
-        case .right, .topRight: return CGPoint(x: centerXPoint, y: 15)
-        case .bottom, .bottomLeft: return CGPoint(x: 15, y: centerYPoint)
-        case .bottomRight: return CGPoint(x: centerXPoint, y: centerYPoint)
-        }
-    }
-    
 }
 
 //  MARK: - UIImagePickerDelegate
@@ -211,7 +185,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         guard let image = info[.originalImage] as? UIImage else { return }
-        photoViews[selectedIndex].photoIsSelected(image: image)
+        photoViews[selectedLayoutIndex].photoIsSelected(image: image)
     }
 }
 
@@ -219,7 +193,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
 
 extension ViewController: PhotoViewDelegate {
     func openGallery(for index: Int) {
-        selectedIndex = index
+        selectedLayoutIndex = index
         present(imagePicker, animated: true, completion: nil)
     }
 }
@@ -242,7 +216,7 @@ extension ViewController {
         view.setNeedsLayout()
         view.layoutIfNeeded()
         
-        createLayout(configuration: getConfiguration(for: currentConfiguration))
+        updateLayout(configuration: layoutViewModel.currentConfiguration)
     }
     
     fileprivate func configureLayout() {
@@ -284,13 +258,14 @@ extension ViewController {
         
         constraints.append(labelSwipeToShare.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor))
         constraints.append(labelSwipeToShare.centerYAnchor.constraint(equalTo: view.centerYAnchor))
+        constraints.append(labelSwipeToShare.rightAnchor.constraint(equalTo: viewLayout.leftAnchor))
         
         constraints.append(viewLayout.centerXAnchor.constraint(equalTo: view.centerXAnchor))
         constraints.append(viewLayout.centerYAnchor.constraint(equalTo: view.centerYAnchor))
         constraints.append(viewLayout.widthAnchor.constraint(equalToConstant: 275))
         constraints.append(viewLayout.heightAnchor.constraint(equalToConstant: 275))
         
-        constraints.append(stackViewLayout.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor, constant: 20))
+        constraints.append(stackViewLayout.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor, constant: 10))
         constraints.append(stackViewLayout.centerYAnchor.constraint(equalTo: view.centerYAnchor))
         
         return constraints

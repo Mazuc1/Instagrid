@@ -25,6 +25,7 @@
 		CF6EA576274695EC0045D04F /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA575274695EC0045D04F /* Layout.swift */; };
 		CF6EA57A274699EC0045D04F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6EA579274699EC0045D04F /* Configuration.swift */; };
 		CF9322F22747A72800AE49FC /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9322F12747A72800AE49FC /* PhotoView.swift */; };
+		CF99FED7275115B4008E67B0 /* LayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF99FED6275115B4008E67B0 /* LayoutViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		CF6EA575274695EC0045D04F /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		CF6EA579274699EC0045D04F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		CF9322F12747A72800AE49FC /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		CF99FED6275115B4008E67B0 /* LayoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 		CF6EA560274661E70045D04F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				CF99FED6275115B4008E67B0 /* LayoutViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 			files = (
 				CF6EA569274662510045D04F /* UIView+extension.swift in Sources */,
 				CF6EA56A274662510045D04F /* Collection+extension.swift in Sources */,
+				CF99FED7275115B4008E67B0 /* LayoutViewModel.swift in Sources */,
 				CF61C94A274241370085D596 /* ViewController.swift in Sources */,
 				CF9322F22747A72800AE49FC /* PhotoView.swift in Sources */,
 				CF61C946274241370085D596 /* AppDelegate.swift in Sources */,

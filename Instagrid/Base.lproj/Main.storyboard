@@ -39,42 +39,42 @@
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="k25-pr-aXV">
                                 <rect key="frame" x="52" y="746" width="310" height="80"/>
                                 <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iyB-em-2Lm">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iyB-em-2Lm">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="0Vh-iB-cNL"/>
                                             <constraint firstAttribute="width" constant="80" id="X9j-SY-rVw"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" backgroundImage="Layout_1">
+                                        <state key="normal" backgroundImage="Selected_0">
                                             <attributedString key="attributedTitle"/>
                                         </state>
                                         <connections>
                                             <action selector="didSelectLayout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mxZ-Bk-wDD"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k2G-g9-70c">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k2G-g9-70c">
                                         <rect key="frame" x="115" y="0.0" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="Myu-za-5gi"/>
                                             <constraint firstAttribute="height" constant="80" id="mdE-re-Bb8"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" backgroundImage="Selected_2">
+                                        <state key="normal" backgroundImage="Layout_1">
                                             <attributedString key="attributedTitle"/>
                                         </state>
                                         <connections>
                                             <action selector="didSelectLayout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VN6-bP-zl0"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pa9-MJ-03I">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pa9-MJ-03I">
                                         <rect key="frame" x="230" y="0.0" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="O9K-2I-fXF"/>
                                             <constraint firstAttribute="height" constant="80" id="XtJ-Qz-VYs"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" backgroundImage="Layout_3">
+                                        <state key="normal" backgroundImage="Layout_2">
                                             <attributedString key="attributedTitle"/>
                                         </state>
                                         <connections>
@@ -101,8 +101,8 @@
     </scenes>
     <resources>
         <image name="Layout_1" width="240" height="240"/>
-        <image name="Layout_3" width="240" height="240"/>
-        <image name="Selected_2" width="240" height="240"/>
+        <image name="Layout_2" width="240" height="240"/>
+        <image name="Selected_0" width="240" height="240"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
