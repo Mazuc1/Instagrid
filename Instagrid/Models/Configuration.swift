@@ -13,7 +13,7 @@ struct Configuration {
     var ratio: [Ratio]
 }
 
-enum Positions {
+enum Positions { // Rename
     case top
     case bottom
     case left

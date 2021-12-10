@@ -11,7 +11,7 @@ class LayoutViewModel {
     
     //  MARK: - Properties
     
-    var currentConfiguration: Configuration!
+    var currentConfiguration: Configuration
     var configurations: [Configuration] = [Layout.one, Layout.two, Layout.three]
     
     let marginsViewLayout: CGFloat = 15
@@ -19,7 +19,7 @@ class LayoutViewModel {
     //  MARK: - Init
     
     init() {
-        currentConfiguration = configurations.first!
+        currentConfiguration = configurations.first! // Layout one
     }
     
     //  MARK: - Methods
@@ -37,7 +37,7 @@ class LayoutViewModel {
     private func getSizeFor(ratio: Ratio, frame: CGRect) -> CGSize {
         switch ratio {
         case .quarter:
-            let calcul = (frame.width / 2) - 15 - marginsViewLayout / 2
+            let calcul = (frame.width / 2) - 15 - marginsViewLayout / 2 //  Rename calcul : sideLength
             return CGSize(width: calcul, height: calcul)
         case .half:
             let height = (frame.height / 2) - 15 - marginsViewLayout / 2
