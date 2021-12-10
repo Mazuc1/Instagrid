@@ -12,14 +12,14 @@ class LayoutViewModel {
     //  MARK: - Properties
     
     var currentConfiguration: Configuration
-    var configurations: [Configuration] = [Layout.one, Layout.two, Layout.three]
+    var configurations: [Configuration] = [Layout.firstTemplate, Layout.secondTemplate, Layout.thirdTemplate]
     
     let marginsViewLayout: CGFloat = 15
     
     //  MARK: - Init
     
     init() {
-        currentConfiguration = configurations.first! // Layout one
+        currentConfiguration = Layout.firstTemplate
     }
     
     //  MARK: - Methods
@@ -37,8 +37,8 @@ class LayoutViewModel {
     private func getSizeFor(ratio: Ratio, frame: CGRect) -> CGSize {
         switch ratio {
         case .quarter:
-            let calcul = (frame.width / 2) - 15 - marginsViewLayout / 2 //  Rename calcul : sideLength
-            return CGSize(width: calcul, height: calcul)
+            let sideLength = (frame.width / 2) - 15 - marginsViewLayout / 2
+            return CGSize(width: sideLength, height: sideLength)
         case .half:
             let height = (frame.height / 2) - 15 - marginsViewLayout / 2
             let width = frame.width - 30
@@ -46,7 +46,7 @@ class LayoutViewModel {
         }
     }
     
-    private func getPointFor(position: Positions, frame: CGRect) -> CGPoint {
+    private func getPointFor(position: Location, frame: CGRect) -> CGPoint {
         let centerXPoint = (frame.width / 2) + (marginsViewLayout / 2)
         let centerYPoint = (frame.height / 2) + (marginsViewLayout / 2)
         

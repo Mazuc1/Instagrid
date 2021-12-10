@@ -9,11 +9,11 @@ import Foundation
 
 struct Configuration {
     var numberOfPhoto: Int
-    var positions: [Positions]
+    var positions: [Location]
     var ratio: [Ratio]
 }
 
-enum Positions { // Rename
+enum Location {
     case top
     case bottom
     case left
