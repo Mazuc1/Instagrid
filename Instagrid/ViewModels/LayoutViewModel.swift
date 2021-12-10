@@ -30,7 +30,7 @@ class LayoutViewModel {
     
     func createFrame(at index: Int, for frame: CGRect) -> (size: CGSize, origin: CGPoint) {
         let size = getSizeFor(ratio: currentConfiguration.ratio[index], frame: frame)
-        let origin = getPointFor(position: currentConfiguration.positions[index], frame: frame)
+        let origin = getPointFor(location: currentConfiguration.locations[index], frame: frame)
         return (size: size, origin: origin)
     }
     
@@ -46,11 +46,11 @@ class LayoutViewModel {
         }
     }
     
-    private func getPointFor(position: Location, frame: CGRect) -> CGPoint {
+    private func getPointFor(location: Location, frame: CGRect) -> CGPoint {
         let centerXPoint = (frame.width / 2) + (marginsViewLayout / 2)
         let centerYPoint = (frame.height / 2) + (marginsViewLayout / 2)
         
-        switch position {
+        switch location {
         case .top, .left, .topLeft: return CGPoint(x: 15, y: 15)
         case .right, .topRight: return CGPoint(x: centerXPoint, y: 15)
         case .bottom, .bottomLeft: return CGPoint(x: 15, y: centerYPoint)

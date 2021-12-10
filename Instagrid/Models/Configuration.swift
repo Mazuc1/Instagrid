@@ -8,9 +8,9 @@
 import Foundation
 
 struct Configuration {
-    var numberOfPhoto: Int
-    var positions: [Location]
-    var ratio: [Ratio]
+    let numberOfPhoto: Int
+    let locations: [Location]
+    let ratio: [Ratio]
 }
 
 enum Location {
