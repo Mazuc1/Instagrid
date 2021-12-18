@@ -13,8 +13,8 @@ protocol PhotoViewDelegate: AnyObject {
 
 class PhotoView: UIView {
     
-    var delegate: PhotoViewDelegate?
-    var image: UIImage?
+    private var delegate: PhotoViewDelegate?
+    private var image: UIImage?
     
     var imageView: UIImageView = {
         UIImageView().configure {

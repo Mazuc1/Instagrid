@@ -11,29 +11,29 @@ class ViewController: UIViewController {
     
     //  MARK: - Properties
     
-    var imagePicker = UIImagePickerController()
+    private let imagePicker = UIImagePickerController()
     
-    var photoViews: [PhotoView] = []
-    var selectedLayoutIndex: Int = 0
+    private var photoViews: [PhotoView] = []
+    private var selectedLayoutIndex: Int = 0
     
-    var swipeGesture: UISwipeGestureRecognizer!
-    var defaultViewLayoutPosition: CGFloat = 0
+    private var swipeGesture: UISwipeGestureRecognizer!
+    private var defaultViewLayoutPosition: CGFloat = 0
     
-    var orientation: UIDeviceOrientation = .faceUp
+    private var orientation: UIDeviceOrientation = .faceUp
     
-    var layoutViewModel: LayoutViewModel!
+    private var layoutViewModel: LayoutViewModel!
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask { [.landscapeLeft, .portrait] }
     
+    private var portraitConstraints: [NSLayoutConstraint]!
+    private var landscapeConstraints: [NSLayoutConstraint]!
+    
     //  MARK: - Outlets
     
-    var portraitConstraints: [NSLayoutConstraint]!
-    var landscapeConstraints: [NSLayoutConstraint]!
-    
-    @IBOutlet weak var viewLayout: UIView!
-    @IBOutlet weak var labelInstagrid: UILabel!
-    @IBOutlet weak var labelSwipeToShare: UILabel!
-    @IBOutlet weak var stackViewLayout: UIStackView!
+    @IBOutlet weak private var viewLayout: UIView!
+    @IBOutlet weak private var labelInstagrid: UILabel!
+    @IBOutlet weak private var labelSwipeToShare: UILabel!
+    @IBOutlet weak private var stackViewLayout: UIStackView!
     
     //  MARK: - Life cycle
     

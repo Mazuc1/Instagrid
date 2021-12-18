@@ -12,9 +12,9 @@ class LayoutViewModel {
     //  MARK: - Properties
     
     var currentConfiguration: Configuration
-    var configurations: [Configuration] = [Layout.firstTemplate, Layout.secondTemplate, Layout.thirdTemplate]
+    let configurations: [Configuration] = [Layout.firstTemplate, Layout.secondTemplate, Layout.thirdTemplate]
     
-    let marginsViewLayout: CGFloat = 15
+    private let marginsViewLayout: CGFloat = 15
     
     //  MARK: - Init
     
